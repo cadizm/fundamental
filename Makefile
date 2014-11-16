@@ -5,8 +5,8 @@ JAVAC = javac
 CLASSPATH = classes:lib/junit-4.11.jar
 
 all: prep classes/list/LinkedList.class classes/list/LinkedListTest.class \
-	classes/dict/Hashtable.class \
-	classes/dict/HashtableTest.class bits
+	classes/dict/Hashtable.class classes/dict/HashtableTest.class \
+	classes/list/DoublyLinkedList.class bits
 
 prep: classes obj bin
 
@@ -22,7 +22,16 @@ bin:
 classes/list/LinkedList.class: src/list/LinkedList.java classes
 	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
 
+classes/list/DoublyLinkedList.class: src/list/DoublyLinkedList.java classes
+	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
+
+classes/list/LinkedListException.class: src/list/LinkedListException.java classes
+	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
+
 classes/list/LinkedListTest.class: src/list/LinkedListTest.java classes/list/LinkedList.class
+	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
+
+classes/list/DoublyLinkedListTest.class: src/list/DoublyLinkedListTest.java classes/list/DoublyLinkedList.class
 	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
 
 classes/dict/Hashtable.class: src/dict/Hashtable.java classes
@@ -33,6 +42,9 @@ classes/dict/HashtableTest.class: src/dict/HashtableTest.java classes/dict/Hasht
 
 linktest: classes/list/LinkedListTest.class
 	$(JAVA) -cp $(CLASSPATH) org.junit.runner.JUnitCore list.LinkedListTest
+
+dublinktest: classes/list/DoublyLinkedListTest.class
+	$(JAVA) -cp $(CLASSPATH) org.junit.runner.JUnitCore list.DoublyLinkedListTest
 
 hashtest: classes/dict/HashtableTest.class
 	$(JAVA) -cp $(CLASSPATH) org.junit.runner.JUnitCore dict.HashtableTest

@@ -20,7 +20,6 @@ public class LinkedList<K, T>
         K key;
         T data;
         Node next;
-        Node prev;
 
         public Node(T obj)
         {
@@ -31,7 +30,7 @@ public class LinkedList<K, T>
         {
             this.key = key;
             data = obj;
-            prev = next = null;
+            next = null;
         }
     }
 
