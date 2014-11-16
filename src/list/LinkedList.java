@@ -11,18 +11,25 @@ class LinkedListException
 }
 
 
-public class LinkedList<T>
+public class LinkedList<K, T>
 {
     private Node head;
 
     class Node
     {
+        K key;
         T data;
         Node next;
         Node prev;
 
         public Node(T obj)
         {
+            this(null, obj);
+        }
+
+        public Node(K key, T obj)
+        {
+            this.key = key;
             data = obj;
             prev = next = null;
         }
@@ -48,8 +55,13 @@ public class LinkedList<T>
 
     public void append(T obj)
     {
+        this.append(null, obj);
+    }
+
+    public void append(K key, T obj)
+    {
         if (head == null) {
-            head = new Node(obj);
+            head = new Node(key, obj);
             return;
         }
 
@@ -59,7 +71,7 @@ public class LinkedList<T>
             runner = runner.next;
         }
 
-        Node node = new Node(obj);
+        Node node = new Node(key, obj);
         runner.next = node;
     }
 
@@ -117,6 +129,25 @@ public class LinkedList<T>
         }
 
         return runner.data;
+    }
+
+    public T item(K key)
+        throws LinkedListException
+    {
+        if (head == null) {
+            return null;
+        }
+
+        Node runner = head;
+
+        while (runner != null) {
+            if (key.equals(runner.key)) {
+                return runner.data;
+            }
+            runner = runner.next;
+        }
+
+        throw new LinkedListException("Item error: bad key");
     }
 
     public void insert(int index, T obj)

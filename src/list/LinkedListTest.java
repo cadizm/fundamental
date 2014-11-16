@@ -12,14 +12,14 @@ public class LinkedListTest
     @Test
     public void testCreate()
     {
-        LinkedList<String> list = new LinkedList<String>();
+        LinkedList<Object, String> list = new LinkedList<Object, String>();
         assertEquals("", list.toString());
     }
 
     @Test
     public void testAppend()
     {
-        LinkedList<String> list = new LinkedList<String>();
+        LinkedList<Object, String> list = new LinkedList<Object, String>();
         list.append("A");
         list.append("B");
         list.append("C");
@@ -31,7 +31,7 @@ public class LinkedListTest
     public void testDelete()
         throws LinkedListException
     {
-        LinkedList<String> list = new LinkedList<String>();
+        LinkedList<Object, String> list = new LinkedList<Object, String>();
         list.append("A");
         list.append("B");
         list.append("C");
@@ -54,7 +54,7 @@ public class LinkedListTest
     public void testDeleteException()
         throws LinkedListException
     {
-        LinkedList<String> list = new LinkedList<String>();
+        LinkedList<Object, String> list = new LinkedList<Object, String>();
         list.delete(0);
     }
 
@@ -62,7 +62,7 @@ public class LinkedListTest
     public void testInsert()
         throws LinkedListException
     {
-        LinkedList<String> list = new LinkedList<String>();
+        LinkedList<Object, String> list = new LinkedList<Object, String>();
         list.insert(0, "A");
         assertEquals("A", list.toString());
 
@@ -89,7 +89,7 @@ public class LinkedListTest
     public void testInsertException()
         throws LinkedListException
     {
-        LinkedList<String> list = new LinkedList<String>();
+        LinkedList<Object, String> list = new LinkedList<Object, String>();
         list.insert(1, "A");
     }
 
@@ -97,7 +97,7 @@ public class LinkedListTest
     public void testReverse()
         throws LinkedListException
     {
-        LinkedList<String> list = new LinkedList<String>();
+        LinkedList<Object, String> list = new LinkedList<Object, String>();
 
         list.reverse();
         assertEquals("", list.toString());
@@ -136,7 +136,7 @@ public class LinkedListTest
     public void testItem()
         throws LinkedListException
     {
-        LinkedList<String> list = new LinkedList<String>();
+        LinkedList<Object, String> list = new LinkedList<Object, String>();
 
         list.append("A");
         assertEquals("A", list.item(0));
