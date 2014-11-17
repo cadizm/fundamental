@@ -9,6 +9,7 @@ public class LinkedList<K, T>
     implements List<T>
 {
     private Node head;
+    private int length;
 
     class Node
     {
@@ -32,18 +33,11 @@ public class LinkedList<K, T>
     public LinkedList()
     {
         head = null;
+        length = 0;
     }
 
     public int length()
     {
-        int length = 0;
-        Node runner = head;
-
-        while (runner != null) {
-            runner = runner.next;
-            length += 1;
-        }
-
         return length;
     }
 
@@ -56,6 +50,7 @@ public class LinkedList<K, T>
     {
         if (head == null) {
             head = new Node(key, obj);
+            length += 1;
             return;
         }
 
@@ -67,6 +62,7 @@ public class LinkedList<K, T>
 
         Node node = new Node(key, obj);
         runner.next = node;
+        length += 1;
     }
 
     public T delete(int index)
@@ -82,6 +78,7 @@ public class LinkedList<K, T>
         if (index == 0) {
             obj = head.data;
             head = head.next;
+            length -= 1;
             return obj;
         }
 
@@ -99,19 +96,21 @@ public class LinkedList<K, T>
         if (next.next == null) {
             prev.next = null;
             obj = next.data;
+            length -= 1;
             return obj;
         }
 
         // delete interior node
         prev.next = next.next;
         obj = next.data;
+        length -= 1;
         return obj;
     }
 
     public T item(int index)
         throws ListException
     {
-        if (index > this.length()) {
+        if (index > length) {
             throw new ListException("Item error: index out of bounds");
         }
 
@@ -147,12 +146,12 @@ public class LinkedList<K, T>
     public void insert(int index, T obj)
         throws ListException
     {
-        if (index > this.length()) {
+        if (index > length) {
             throw new ListException("Insert error: index out of bounds");
         }
 
         // append
-        if (index == this.length()) {
+        if (index == length) {
             append(obj);
         }
 
@@ -161,6 +160,7 @@ public class LinkedList<K, T>
             Node node = new Node(obj);
             node.next = head;
             head = node;
+            length += 1;
         }
 
         // interior
@@ -177,6 +177,7 @@ public class LinkedList<K, T>
             Node node = new Node(obj);
             prev.next = node;
             node.next = next;
+            length += 1;
         }
     }
 
@@ -203,7 +204,8 @@ public class LinkedList<K, T>
         }
     }
 
-    public String toString() {
+    public String toString()
+    {
         if (head == null) {
             return "";
         }

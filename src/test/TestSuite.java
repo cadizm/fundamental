@@ -12,7 +12,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
     LinkedListTest.class,
     DoublyLinkedListTest.class,
-    HashtableTest.class
+    HashtableTest.class,
+    LinkedQueueTest.class
 })
 public class TestSuite
 {
