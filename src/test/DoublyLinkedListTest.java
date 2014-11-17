@@ -1,10 +1,12 @@
 
-package list;
+package test;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 import org.junit.Ignore;
+
+import impl.DoublyLinkedList;
+import exception.ListException;
 
 
 public class DoublyLinkedListTest
@@ -34,7 +36,7 @@ public class DoublyLinkedListTest
 
     @Test
     public void testDelete()
-        throws LinkedListException
+        throws ListException
     {
         DoublyLinkedList<String> list = new DoublyLinkedList<String>();
         list.append("A");
@@ -76,7 +78,7 @@ public class DoublyLinkedListTest
 
     @Test
     public void testInsert()
-        throws LinkedListException
+        throws ListException
     {
         DoublyLinkedList<String> list = new DoublyLinkedList<String>();
         list.insert(0, "A");
@@ -110,7 +112,7 @@ public class DoublyLinkedListTest
 
     @Test
     public void testItem()
-        throws LinkedListException
+        throws ListException
     {
         DoublyLinkedList<String> list = new DoublyLinkedList<String>();
 
@@ -129,5 +131,4 @@ public class DoublyLinkedListTest
         list.append("E");
         assertEquals("E", list.item(list.length() - 1));
     }
-
 }

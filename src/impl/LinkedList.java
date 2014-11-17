@@ -1,17 +1,12 @@
 
-package list;
+package impl;
 
-class LinkedListException
-    extends Exception
-{
-    public LinkedListException(String err)
-    {
-        super(err);
-    }
-}
+import adt.List;
+import exception.ListException;
 
 
 public class LinkedList<K, T>
+    implements List<T>
 {
     private Node head;
 
@@ -75,10 +70,10 @@ public class LinkedList<K, T>
     }
 
     public T delete(int index)
-        throws LinkedListException
+        throws ListException
     {
         if (index > this.length() - 1) {
-            throw new LinkedListException("Delete error: index out of bounds");
+            throw new ListException("Delete error: index out of bounds");
         }
 
         T obj = null;
@@ -114,10 +109,10 @@ public class LinkedList<K, T>
     }
 
     public T item(int index)
-        throws LinkedListException
+        throws ListException
     {
         if (index > this.length()) {
-            throw new LinkedListException("Item error: index out of bounds");
+            throw new ListException("Item error: index out of bounds");
         }
 
         int i = 0;
@@ -131,7 +126,7 @@ public class LinkedList<K, T>
     }
 
     public T item(K key)
-        throws LinkedListException
+        throws ListException
     {
         if (head == null) {
             return null;
@@ -146,14 +141,14 @@ public class LinkedList<K, T>
             runner = runner.next;
         }
 
-        throw new LinkedListException("Item error: bad key");
+        throw new ListException("Item error: bad key");
     }
 
     public void insert(int index, T obj)
-        throws LinkedListException
+        throws ListException
     {
         if (index > this.length()) {
-            throw new LinkedListException("Insert error: index out of bounds");
+            throw new ListException("Insert error: index out of bounds");
         }
 
         // append
@@ -223,5 +218,4 @@ public class LinkedList<K, T>
 
         return sb.toString();
     }
-
 }

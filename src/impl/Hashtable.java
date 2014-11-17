@@ -1,16 +1,9 @@
 
-package dict;
+package impl;
 
-import list.LinkedList;
-
-class HashtableException
-    extends Exception
-{
-    public HashtableException(String err)
-    {
-        super(err);
-    }
-}
+import adt.Dictionary;
+import impl.LinkedList;
+import exception.DictionaryException;
 
 
 /**
@@ -20,6 +13,7 @@ class HashtableException
  * Key type K needs valid hashCode() implementation
  */
 public class Hashtable<K>
+    implements Dictionary<K>
 {
     private static int DEFAUL_TABLE_SIZE = 1;
 
@@ -46,7 +40,7 @@ public class Hashtable<K>
     }
 
     public Object get(K key)
-        throws HashtableException
+        throws DictionaryException
     {
         int index = hash(key);
 
@@ -61,7 +55,7 @@ public class Hashtable<K>
             return list.item(key);
         }
         catch (Exception e) {
-            throw new HashtableException("Get error: bad key");
+            throw new DictionaryException("Get error: bad key");
         }
     }
 

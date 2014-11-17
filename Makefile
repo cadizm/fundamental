@@ -2,52 +2,18 @@
 CC = gcc
 JAVA = java
 JAVAC = javac
-CLASSPATH = classes:lib/junit-4.11.jar
+CLASSPATH = src:classes:lib/junit-4.11.jar
 
-all: prep classes/list/LinkedList.class classes/list/LinkedListTest.class \
-	classes/dict/Hashtable.class classes/dict/HashtableTest.class \
-	classes/list/DoublyLinkedList.class bits
+all: prep bits java
 
-prep: classes obj bin
+prep:
+	@mkdir -p classes obj bin
 
-classes:
-	mkdir classes
+java:
+	find src -type f -iname '*.java' | xargs $(JAVAC) -cp $(CLASSPATH) -d classes
 
-obj:
-	mkdir obj
-
-bin:
-	mkdir bin
-
-classes/list/LinkedList.class: src/list/LinkedList.java classes
-	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
-
-classes/list/DoublyLinkedList.class: src/list/DoublyLinkedList.java classes
-	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
-
-classes/list/LinkedListException.class: src/list/LinkedListException.java classes
-	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
-
-classes/list/LinkedListTest.class: src/list/LinkedListTest.java classes/list/LinkedList.class
-	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
-
-classes/list/DoublyLinkedListTest.class: src/list/DoublyLinkedListTest.java classes/list/DoublyLinkedList.class
-	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
-
-classes/dict/Hashtable.class: src/dict/Hashtable.java classes
-	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
-
-classes/dict/HashtableTest.class: src/dict/HashtableTest.java classes/dict/Hashtable.class
-	$(JAVAC) -g -Xlint:unchecked -cp $(CLASSPATH) -d classes $<
-
-linktest: classes/list/LinkedListTest.class
-	$(JAVA) -cp $(CLASSPATH) org.junit.runner.JUnitCore list.LinkedListTest
-
-dublinktest: classes/list/DoublyLinkedListTest.class
-	$(JAVA) -cp $(CLASSPATH) org.junit.runner.JUnitCore list.DoublyLinkedListTest
-
-hashtest: classes/dict/HashtableTest.class
-	$(JAVA) -cp $(CLASSPATH) org.junit.runner.JUnitCore dict.HashtableTest
+test: java
+	java -cp classes:lib/junit-4.11.jar test.TestSuite
 
 obj/bits.o: src/bits/bits.c src/bits/bits.h obj
 	$(CC) -c $< -o obj/bits.o
@@ -63,4 +29,4 @@ bits: prep bin/bittest
 clean:
 	rm -rf ./classes ./obj ./bin
 
-.PHONY: all test clean
+.PHONY: all prep java test bits clean

@@ -1,7 +1,12 @@
 
-package list;
+package impl;
+
+import adt.List;
+import exception.ListException;
+
 
 public class DoublyLinkedList<T>
+    implements List<T>
 {
     private Node head;
     private Node tail;
@@ -56,12 +61,12 @@ public class DoublyLinkedList<T>
     }
 
     public T delete(int index)
-        throws LinkedListException
+        throws ListException
     {
         int length = this.length();
 
         if (index > length - 1) {
-            throw new LinkedListException("Delete error: index out of bounds");
+            throw new ListException("Delete error: index out of bounds");
         }
 
         T obj = null;
@@ -107,10 +112,10 @@ public class DoublyLinkedList<T>
     }
 
     public T item(int index)
-        throws LinkedListException
+        throws ListException
     {
         if (index > this.length()) {
-            throw new LinkedListException("Item error: index out of bounds");
+            throw new ListException("Item error: index out of bounds");
         }
 
         int i = 0;
@@ -124,12 +129,12 @@ public class DoublyLinkedList<T>
     }
 
     public void insert(int index, T obj)
-        throws LinkedListException
+        throws ListException
     {
         int length = this.length();
 
         if (index > length) {
-            throw new LinkedListException("Insert error: index out of bounds");
+            throw new ListException("Insert error: index out of bounds");
         }
 
         // append

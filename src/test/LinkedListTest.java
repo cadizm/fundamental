@@ -1,10 +1,12 @@
 
-package list;
+package test;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 import org.junit.Ignore;
+
+import impl.LinkedList;
+import exception.ListException;
 
 
 public class LinkedListTest
@@ -29,7 +31,7 @@ public class LinkedListTest
 
     @Test
     public void testDelete()
-        throws LinkedListException
+        throws ListException
     {
         LinkedList<Object, String> list = new LinkedList<Object, String>();
         list.append("A");
@@ -50,9 +52,9 @@ public class LinkedListTest
         assertEquals("", list.toString());
     }
 
-    @Test(expected=LinkedListException.class)
+    @Test(expected=ListException.class)
     public void testDeleteException()
-        throws LinkedListException
+        throws ListException
     {
         LinkedList<Object, String> list = new LinkedList<Object, String>();
         list.delete(0);
@@ -60,7 +62,7 @@ public class LinkedListTest
 
     @Test
     public void testInsert()
-        throws LinkedListException
+        throws ListException
     {
         LinkedList<Object, String> list = new LinkedList<Object, String>();
         list.insert(0, "A");
@@ -85,9 +87,9 @@ public class LinkedListTest
         assertEquals("BDECFAG", list.toString());
     }
 
-    @Test(expected=LinkedListException.class)
+    @Test(expected=ListException.class)
     public void testInsertException()
-        throws LinkedListException
+        throws ListException
     {
         LinkedList<Object, String> list = new LinkedList<Object, String>();
         list.insert(1, "A");
@@ -95,7 +97,7 @@ public class LinkedListTest
 
     @Test
     public void testReverse()
-        throws LinkedListException
+        throws ListException
     {
         LinkedList<Object, String> list = new LinkedList<Object, String>();
 
@@ -134,7 +136,7 @@ public class LinkedListTest
 
     @Test
     public void testItem()
-        throws LinkedListException
+        throws ListException
     {
         LinkedList<Object, String> list = new LinkedList<Object, String>();
 
@@ -153,5 +155,4 @@ public class LinkedListTest
         list.append("E");
         assertEquals("E", list.item(list.length() - 1));
     }
-
 }

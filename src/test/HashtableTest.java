@@ -1,17 +1,19 @@
 
-package dict;
+package test;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 import org.junit.Ignore;
+
+import impl.Hashtable;
+import exception.DictionaryException;
 
 
 public class HashtableTest
 {
     @Test
-    public void testOne()
-        throws HashtableException
+    public void testPut()
+        throws DictionaryException
     {
         Hashtable<String> hashtable = new Hashtable<String>();
         hashtable.put("A", "A");
@@ -21,7 +23,5 @@ public class HashtableTest
         assertEquals("A", hashtable.get("B"));
 
         assertEquals(2, hashtable.size());
-
     }
-
 }
