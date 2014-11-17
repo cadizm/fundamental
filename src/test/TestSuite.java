@@ -13,7 +13,8 @@ import org.junit.runners.Suite;
     LinkedListTest.class,
     DoublyLinkedListTest.class,
     HashtableTest.class,
-    LinkedQueueTest.class
+    LinkedQueueTest.class,
+    LinkedStackTest.class,
 })
 public class TestSuite
 {
