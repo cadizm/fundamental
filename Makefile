@@ -9,7 +9,7 @@ all: prep bits java
 prep:
 	@mkdir -p classes obj bin
 
-java:
+java: prep
 	find src -type f -iname '*.java' | xargs $(JAVAC) -cp $(CLASSPATH) -d classes
 
 test: java
