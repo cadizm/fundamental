@@ -15,6 +15,7 @@ import org.junit.runners.Suite;
     HashtableTest.class,
     LinkedQueueTest.class,
     LinkedStackTest.class,
+    LinkedBinaryTreeTest.class,
 })
 public class TestSuite
 {

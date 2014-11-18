@@ -41,6 +41,18 @@ public class LinkedQueue<T>
         }
     }
 
+    public T peek()
+        throws QueueException
+    {
+        try {
+            return list.item(0);
+        }
+        catch (ListException le) {
+            String s = "Peek error: " + le.getMessage();
+            throw new QueueException(s);
+        }
+    }
+
     public boolean isEmpty()
     {
         return list.length() == 0;

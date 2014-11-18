@@ -12,6 +12,9 @@ public interface Stack<T>
     public T pop()
         throws StackException;
 
+    public T top()
+        throws StackException;
+
     public boolean isEmpty();
 
     public int length();

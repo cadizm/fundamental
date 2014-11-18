@@ -12,6 +12,9 @@ public interface Queue<T>
     public T dequeue()
         throws QueueException;
 
+    public T peek()
+        throws QueueException;
+
     public boolean isEmpty();
 
     public int length();

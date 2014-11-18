@@ -41,6 +41,18 @@ public class LinkedStack<T>
         }
     }
 
+    public T top()
+        throws StackException
+    {
+        try {
+            return list.item(0);
+        }
+        catch (ListException le) {
+            String s = "Pop error: " + le.getMessage();
+            throw new StackException(s);
+        }
+    }
+
     public boolean isEmpty()
     {
         return list.length() == 0;
