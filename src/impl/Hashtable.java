@@ -11,6 +11,8 @@ import exception.DictionaryException;
  * https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#createArrays
  *
  * Key type K needs valid hashCode() implementation
+ *
+ * TODO: implement own ArrayList to change interface to Hashtable<K, V>
  */
 public class Hashtable<K>
     implements Dictionary<K>

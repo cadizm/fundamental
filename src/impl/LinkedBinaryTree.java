@@ -18,6 +18,9 @@ public class LinkedBinaryTree<K, V>
 {
     private Node root;
     private int size;
+    /*
+     * Using queue since we add nodes in level order
+     */
     private Queue<Node> queue;
 
     public class Node
@@ -90,12 +93,18 @@ public class LinkedBinaryTree<K, V>
         }
     }
 
+    /*
+     * TODO:
+     */
     public V remove(K key)
         throws BinaryTreeException
     {
         return null;
     }
 
+    /*
+     * TODO:
+     */
     public V get(K key)
         throws BinaryTreeException
     {
@@ -139,7 +148,7 @@ public class LinkedBinaryTree<K, V>
     }
 
     /*
-     * String repr in level order
+     * Nodes concatenated in level order
      */
     public String toString()
     {
@@ -279,7 +288,7 @@ public class LinkedBinaryTree<K, V>
             try {
                 if (root != null) {
                     stack.push(root);
-                    Q(root);
+                    P(root);
                 }
             }
             catch (StackException se) {
@@ -287,7 +296,7 @@ public class LinkedBinaryTree<K, V>
             }
         }
 
-        private void Q(Node node)
+        private void P(Node node)
             throws StackException
         {
             if (node == null) {
@@ -296,12 +305,12 @@ public class LinkedBinaryTree<K, V>
 
             if (node.right != null) {
                 stack.push(node.right);
-                Q(node.right);
+                P(node.right);
             }
 
             if (node.left != null) {
                 stack.push(node.left);
-                Q(node.left);
+                P(node.left);
             }
         }
 
