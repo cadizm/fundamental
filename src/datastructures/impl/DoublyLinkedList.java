@@ -1,7 +1,7 @@
 
-package impl;
+package datastructures.impl;
 
-import adt.List;
+import datastructures.adt.List;
 import exception.ListException;
 
 

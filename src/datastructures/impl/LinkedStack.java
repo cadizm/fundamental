@@ -1,10 +1,10 @@
 
-package impl;
+package datastructures.impl;
 
-import adt.Stack;
+import datastructures.adt.Stack;
+import datastructures.impl.DoublyLinkedList;
 import exception.ListException;
 import exception.StackException;
-import impl.DoublyLinkedList;
 
 
 public class LinkedStack<T>

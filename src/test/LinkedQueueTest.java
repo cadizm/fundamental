@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import impl.LinkedQueue;
+import datastructures.impl.LinkedQueue;
 import exception.QueueException;
 
 

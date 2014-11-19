@@ -1,8 +1,8 @@
 
-package impl;
+package datastructures.impl;
 
-import adt.Dictionary;
-import impl.LinkedList;
+import datastructures.adt.Dictionary;
+import datastructures.impl.LinkedList;
 import exception.DictionaryException;
 
 

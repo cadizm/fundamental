@@ -1,5 +1,5 @@
 
-package adt;
+package datastructures.adt;
 
 import exception.StackException;
 

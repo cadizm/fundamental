@@ -1,16 +1,16 @@
 
-package impl;
+package datastructures.impl;
 
 import java.util.Iterator;
 
-import adt.BinaryTree;
-import adt.Queue;
-import adt.Stack;
+import datastructures.adt.BinaryTree;
+import datastructures.adt.Queue;
+import datastructures.adt.Stack;
+import datastructures.impl.LinkedQueue;
+import datastructures.impl.LinkedStack;
 import exception.BinaryTreeException;
 import exception.QueueException;
 import exception.StackException;
-import impl.LinkedQueue;
-import impl.LinkedStack;
 
 
 public class LinkedBinaryTree<K, V>

@@ -1,10 +1,10 @@
 
-package impl;
+package datastructures.impl;
 
-import adt.Queue;
+import datastructures.adt.Queue;
+import datastructures.impl.DoublyLinkedList;
 import exception.ListException;
 import exception.QueueException;
-import impl.DoublyLinkedList;
 
 
 public class LinkedQueue<T>

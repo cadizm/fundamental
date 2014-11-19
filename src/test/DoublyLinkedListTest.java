@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import impl.DoublyLinkedList;
+import datastructures.impl.DoublyLinkedList;
 import exception.ListException;
 
 
