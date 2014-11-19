@@ -18,6 +18,7 @@ import org.junit.runners.Suite;
     LinkedBinaryTreeTest.class,
 //    UtilTest.class,
     BinarySearchTest.class,
+    SortTest.class,
 })
 public class TestSuite
 {
