@@ -10,7 +10,7 @@ prep:
 	@mkdir -p classes obj bin
 
 java: prep
-	find src -type f -iname '*.java' | xargs $(JAVAC) -cp $(CLASSPATH) -d classes
+	find src -type f -iname '*.java' | xargs $(JAVAC) -cp $(CLASSPATH) -d classes -Xlint:unchecked
 
 test: java
 	java -cp classes:lib/junit-4.11.jar test.TestSuite
