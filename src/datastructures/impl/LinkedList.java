@@ -9,7 +9,7 @@ public class LinkedList<K, T>
     implements List<T>
 {
     private Node head;
-    private int length;
+    private int size;
 
     class Node
     {
@@ -33,12 +33,12 @@ public class LinkedList<K, T>
     public LinkedList()
     {
         head = null;
-        length = 0;
+        size = 0;
     }
 
-    public int length()
+    public int size()
     {
-        return length;
+        return size;
     }
 
     public void append(T obj)
@@ -50,7 +50,7 @@ public class LinkedList<K, T>
     {
         if (head == null) {
             head = new Node(key, obj);
-            length += 1;
+            size += 1;
             return;
         }
 
@@ -62,13 +62,13 @@ public class LinkedList<K, T>
 
         Node node = new Node(key, obj);
         runner.next = node;
-        length += 1;
+        size += 1;
     }
 
     public T delete(int index)
         throws ListException
     {
-        if (index > this.length() - 1) {
+        if (index > this.size() - 1) {
             throw new ListException("Delete error: index out of bounds");
         }
 
@@ -78,7 +78,7 @@ public class LinkedList<K, T>
         if (index == 0) {
             obj = head.data;
             head = head.next;
-            length -= 1;
+            size -= 1;
             return obj;
         }
 
@@ -96,21 +96,21 @@ public class LinkedList<K, T>
         if (next.next == null) {
             prev.next = null;
             obj = next.data;
-            length -= 1;
+            size -= 1;
             return obj;
         }
 
         // delete interior node
         prev.next = next.next;
         obj = next.data;
-        length -= 1;
+        size -= 1;
         return obj;
     }
 
     public T item(int index)
         throws ListException
     {
-        if (index > length) {
+        if (index > size) {
             throw new ListException("Item error: index out of bounds");
         }
 
@@ -146,12 +146,12 @@ public class LinkedList<K, T>
     public void insert(int index, T obj)
         throws ListException
     {
-        if (index > length) {
+        if (index > size) {
             throw new ListException("Insert error: index out of bounds");
         }
 
         // append
-        if (index == length) {
+        if (index == size) {
             append(obj);
         }
 
@@ -160,7 +160,7 @@ public class LinkedList<K, T>
             Node node = new Node(obj);
             node.next = head;
             head = node;
-            length += 1;
+            size += 1;
         }
 
         // interior
@@ -177,7 +177,7 @@ public class LinkedList<K, T>
             Node node = new Node(obj);
             prev.next = node;
             node.next = next;
-            length += 1;
+            size += 1;
         }
     }
 

@@ -17,5 +17,5 @@ public interface Stack<T>
 
     public boolean isEmpty();
 
-    public int length();
+    public int size();
 }

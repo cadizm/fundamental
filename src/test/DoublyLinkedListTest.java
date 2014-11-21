@@ -129,6 +129,6 @@ public class DoublyLinkedListTest
         assertEquals("D", list.item(1));
 
         list.append("E");
-        assertEquals("E", list.item(list.length() - 1));
+        assertEquals("E", list.item(list.size() - 1));
     }
 }

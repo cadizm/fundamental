@@ -55,12 +55,12 @@ public class LinkedStack<T>
 
     public boolean isEmpty()
     {
-        return list.length() == 0;
+        return list.size() == 0;
     }
 
-    public int length()
+    public int size()
     {
-        return list.length();
+        return list.size();
     }
 
     /*

@@ -17,5 +17,5 @@ public interface Queue<T>
 
     public boolean isEmpty();
 
-    public int length();
+    public int size();
 }

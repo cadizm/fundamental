@@ -10,7 +10,7 @@ public class DoublyLinkedList<T>
 {
     private Node head;
     private Node tail;
-    private int length;
+    private int size;
 
     class Node
     {
@@ -30,16 +30,16 @@ public class DoublyLinkedList<T>
         head = tail = null;
     }
 
-    public int length()
+    public int size()
     {
-        return length;
+        return size;
     }
 
     public void append(T obj)
     {
         if (head == null) {
             head = tail = new Node(obj);
-            length += 1;
+            size += 1;
             return;
         }
 
@@ -48,13 +48,13 @@ public class DoublyLinkedList<T>
         tail.next = node;
         node.prev = tail;
         tail = node;
-        length += 1;
+        size += 1;
     }
 
     public T delete(int index)
         throws ListException
     {
-        if (index > length - 1) {
+        if (index > size - 1) {
             throw new ListException("Delete error: index out of bounds");
         }
 
@@ -70,16 +70,16 @@ public class DoublyLinkedList<T>
             else {
                 head.prev = null;
             }
-            length -= 1;
+            size -= 1;
             return obj;
         }
 
         // delete tail
-        else if (index == length - 1) {
+        else if (index == size - 1) {
             obj = tail.data;
             tail = tail.prev;
             tail.next = null;
-            length -= 1;
+            size -= 1;
             return obj;
         }
 
@@ -98,7 +98,7 @@ public class DoublyLinkedList<T>
             prev.next = next.next;
             prev.next.prev = prev;
             obj = next.data;
-            length -= 1;
+            size -= 1;
             return obj;
         }
     }
@@ -106,7 +106,7 @@ public class DoublyLinkedList<T>
     public T item(int index)
         throws ListException
     {
-        if (index > length) {
+        if (index > size) {
             throw new ListException("Item error: index out of bounds");
         }
 
@@ -123,12 +123,12 @@ public class DoublyLinkedList<T>
     public void insert(int index, T obj)
         throws ListException
     {
-        if (index > length) {
+        if (index > size) {
             throw new ListException("Insert error: index out of bounds");
         }
 
         // append
-        if (index == length) {
+        if (index == size) {
             append(obj);
         }
 
@@ -138,7 +138,7 @@ public class DoublyLinkedList<T>
             node.next = head;
             head.prev = node;
             head = node;
-            length += 1;
+            size += 1;
         }
 
         // insert interior node
@@ -160,7 +160,7 @@ public class DoublyLinkedList<T>
 
             node.prev = prev;
             node.next = next;
-            length += 1;
+            size += 1;
         }
     }
 

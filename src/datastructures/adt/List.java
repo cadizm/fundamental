@@ -6,7 +6,7 @@ import exception.ListException;
 
 public interface List<T>
 {
-    public int length();
+    public int size();
 
     public void append(T obj);
 

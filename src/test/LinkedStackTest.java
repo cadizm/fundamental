@@ -63,23 +63,23 @@ public class LinkedStackTest
     }
 
     @Test
-    public void testLength()
+    public void testSize()
         throws StackException
     {
         LinkedStack<String> stack = new LinkedStack<String>();
-        assertEquals(0, stack.length());
+        assertEquals(0, stack.size());
 
         stack.push("A");
-        assertEquals(1, stack.length());
+        assertEquals(1, stack.size());
 
         stack.push("B");
         stack.push("C");
-        assertEquals(3, stack.length());
+        assertEquals(3, stack.size());
 
         stack.pop();
         stack.pop();
         stack.pop();
 
-        assertEquals(0, stack.length());
+        assertEquals(0, stack.size());
     }
 }

@@ -40,6 +40,11 @@ public class LinkedBinaryTreeTest
         assertEquals("(1,A)(2,B)(3,C)(4,D)(5,E)(6,F)", tree.toString());
     }
 
+    /*
+     * TODO: make root/left/right public and create tree by hand to test
+     * traversals with trees that are not full/complete and are not created in level
+     * order. Another way is to create tree then remove nodes
+     */
     @Test
     public void testPreOrderTraversal()
         throws BinaryTreeException

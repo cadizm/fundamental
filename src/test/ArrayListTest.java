@@ -5,23 +5,23 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import datastructures.impl.LinkedList;
+import datastructures.impl.ArrayList;
 import exception.ListException;
 
 
-public class LinkedListTest
+public class ArrayListTest
 {
     @Test
     public void testCreate()
     {
-        LinkedList<Object, String> list = new LinkedList<Object, String>();
+        ArrayList<String> list = new ArrayList<String>(1);
         assertEquals("", list.toString());
     }
 
     @Test
     public void testAppend()
     {
-        LinkedList<Object, String> list = new LinkedList<Object, String>();
+        ArrayList<String> list = new ArrayList<String>(1);
         list.append("A");
         list.append("B");
         list.append("C");
@@ -33,7 +33,7 @@ public class LinkedListTest
     public void testDelete()
         throws ListException
     {
-        LinkedList<Object, String> list = new LinkedList<Object, String>();
+        ArrayList<String> list = new ArrayList<String>(1);
         list.append("A");
         list.append("B");
         list.append("C");
@@ -52,19 +52,11 @@ public class LinkedListTest
         assertEquals("", list.toString());
     }
 
-    @Test(expected=ListException.class)
-    public void testDeleteException()
-        throws ListException
-    {
-        LinkedList<Object, String> list = new LinkedList<Object, String>();
-        list.delete(0);
-    }
-
     @Test
     public void testInsert()
         throws ListException
     {
-        LinkedList<Object, String> list = new LinkedList<Object, String>();
+        ArrayList<String> list = new ArrayList<String>(1);
         list.insert(0, "A");
         assertEquals("A", list.toString());
 
@@ -85,21 +77,40 @@ public class LinkedListTest
 
         list.insert(6, "G");
         assertEquals("BDECFAG", list.toString());
+
+        assertEquals("E", list.delete(2));
+        assertEquals("BDCFAG", list.toString());
+
+        list.insert(4, "H");
+        assertEquals("BDCFHAG", list.toString());
     }
 
-    @Test(expected=ListException.class)
-    public void testInsertException()
+    @Test
+    public void testSwap()
         throws ListException
     {
-        LinkedList<Object, String> list = new LinkedList<Object, String>();
-        list.insert(1, "A");
+        ArrayList<String> list = new ArrayList<String>(1);
+
+        list.insert(0, "A");
+        list.swap(0, 0);
+        assertEquals("A", list.toString());
+
+
+        list.insert(0, "B");
+        list.swap(0, 1);
+        assertEquals("AB", list.toString());
+
+        list.insert(2, "C");
+        assertEquals("ABC", list.toString());
+        list.swap(0, 2);
+        assertEquals("CBA", list.toString());
     }
 
     @Test
     public void testReverse()
         throws ListException
     {
-        LinkedList<Object, String> list = new LinkedList<Object, String>();
+        ArrayList<String> list = new ArrayList<String>(1);
 
         list.reverse();
         assertEquals("", list.toString());
@@ -137,7 +148,7 @@ public class LinkedListTest
     public void testItem()
         throws ListException
     {
-        LinkedList<Object, String> list = new LinkedList<Object, String>();
+        ArrayList<String> list = new ArrayList<String>(1);
 
         list.append("A");
         assertEquals("A", list.item(0));

@@ -63,23 +63,23 @@ public class LinkedQueueTest
     }
 
     @Test
-    public void testLength()
+    public void testSize()
         throws QueueException
     {
         LinkedQueue<String> queue = new LinkedQueue<String>();
-        assertEquals(0, queue.length());
+        assertEquals(0, queue.size());
 
         queue.enqueue("A");
-        assertEquals(1, queue.length());
+        assertEquals(1, queue.size());
 
         queue.enqueue("B");
         queue.enqueue("C");
-        assertEquals(3, queue.length());
+        assertEquals(3, queue.size());
 
         queue.dequeue();
         queue.dequeue();
         queue.dequeue();
 
-        assertEquals(0, queue.length());
+        assertEquals(0, queue.size());
     }
 }
