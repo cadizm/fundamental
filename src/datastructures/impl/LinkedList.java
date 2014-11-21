@@ -107,6 +107,48 @@ public class LinkedList<K, T>
         return obj;
     }
 
+    public T delete(K key)
+        throws ListException
+    {
+        T obj = null;
+
+        // delete head
+        if (head.key.equals(key)) {
+            obj = head.data;
+            head = head.next;
+            size -= 1;
+            return obj;
+        }
+
+        int i = 0;
+        // "start" at index 1
+        Node prev = head;
+        Node next = head.next;
+        while (!next.key.equals(key) && i != this.size() - 1) {
+            i += 1;
+            prev = next;
+            next = next.next;
+        }
+
+        if (!next.key.equals(key)) {
+            throw new ListException("Delete error: bad key");
+        }
+
+        // delete tail
+        if (next.next == null) {
+            prev.next = null;
+            obj = next.data;
+            size -= 1;
+            return obj;
+        }
+
+        // delete interior node
+        prev.next = next.next;
+        obj = next.data;
+        size -= 1;
+        return obj;
+    }
+
     public T item(int index)
         throws ListException
     {
@@ -128,7 +170,7 @@ public class LinkedList<K, T>
         throws ListException
     {
         if (head == null) {
-            return null;
+            throw new ListException("Item error: bad key");
         }
 
         Node runner = head;
