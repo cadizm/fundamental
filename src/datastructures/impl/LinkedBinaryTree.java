@@ -16,40 +16,13 @@ import exception.StackException;
 public class LinkedBinaryTree<K, V>
     implements BinaryTree<K, V>
 {
-    private Node root;
+    public TreeNode<K, V> root;
     private int size;
-    /*
-     * Using queue since we add nodes in level order
-     */
-    private Queue<Node> queue;
-
-    public class Node
-    {
-        K key;
-        V value;
-        boolean visited;
-
-        Node left;
-        Node right;
-
-        public Node(K key, V value)
-        {
-            this.key = key;
-            this.value = value;
-            this.visited = false;
-        }
-
-        public String toString()
-        {
-            return String.format("(%s,%s)", key.toString(), value.toString());
-        }
-    }
 
     public LinkedBinaryTree()
     {
         root = null;
         size = 0;
-        queue = new LinkedQueue<Node>();
     }
 
     public int size()
@@ -63,58 +36,143 @@ public class LinkedBinaryTree<K, V>
     public void add(K key, V value)
         throws BinaryTreeException
     {
-        try {
-            if (root == null) {
-                root = new Node(key, value);
-                queue.enqueue(root);
-            }
-            else {
-                while (!queue.isEmpty()) {
-                    Node node = queue.peek();
-                    if (node.left == null) {
-                        node.left = new Node(key, value);
-                        queue.enqueue(node.left);
-                        break;
-                    }
-                    else if (node.right == null) {
-                        node.right = new Node(key, value);
-                        queue.enqueue(node.right);
-                        break;
-                    }
-                    else {
-                        queue.dequeue();
-                    }
-                }
-            }
+        if (root == null) {
+            root = new TreeNode<K, V>(key, value);
+            size += 1;
+            return;
         }
-        catch (QueueException qe) {
-            String s = "Add error: " + qe.getMessage();
-            throw new BinaryTreeException(s);
+
+        Iterator<TreeNode<K, V>> iter = this.levelOrderIterator();
+
+        while (iter.hasNext()) {
+            TreeNode<K, V> node = iter.next();
+            if (node.left == null) {
+                node.left = new TreeNode<K, V>(key, value);
+                size += 1;
+                break;
+            }
+            else if (node.right == null) {
+                node.right = new TreeNode<K, V>(key, value);
+                size += 1;
+                break;
+            }
         }
     }
 
-    /*
-     * TODO:
-     */
     public V remove(K key)
         throws BinaryTreeException
     {
+        Iterator<TreeNode<K, V>> iter = this.levelOrderIterator();
+
+        while (iter.hasNext()) {
+            TreeNode<K, V> node = iter.next();
+            TreeNode<K, V> parent = parent(node);
+
+            if (node.key.equals(key)) {
+                // remove root node
+                if (parent == null) {
+                    if (node.left != null) {
+                        root = node.left;
+                        if (node.right != null) {
+                            this.add(node.right.key, node.right.value);
+                        }
+                    }
+                    else if (node.right != null) {
+                        root = node.right;
+                        if (node.left != null) {
+                            this.add(node.left.key, node.left.value);
+                        }
+                    }
+                    else {
+                        root = null;
+                    }
+                }
+                // remove leaf node
+                else if (node.left == null && node.right == null) {
+                    if (parent.left == node) {
+                        parent.left = null;
+                    }
+                    else {
+                        parent.right = null;
+                    }
+                }
+                // remove internal node
+                else {
+                    if (parent.left == node) {
+                        if (node.left != null) {
+                            parent.left = node.left;
+                            if (node.right != null) {
+                                this.add(node.right.key, node.right.value);
+                            }
+                        }
+                        else {
+                            parent.left = node.right;
+                            if (node.left != null) {
+                                this.add(node.left.key, node.left.value);
+                            }
+                        }
+                    }
+                    else {
+                        if (node.left != null) {
+                            parent.right = node.left;
+                            if (node.right != null) {
+                                this.add(node.right.key, node.right.value);
+                            }
+                        }
+                        else {
+                            parent.right = node.right;
+                            if (node.left != null) {
+                                this.add(node.left.key, node.left.value);
+                            }
+                        }
+                    }
+                }
+
+                size -= 1;
+                return node.value;
+            }
+        }
+
+        throw new BinaryTreeException("Remove error: key not found");
+    }
+
+    public TreeNode<K, V> parent(TreeNode<K, V> child)
+        throws BinaryTreeException
+    {
+        Iterator<TreeNode<K, V>> iter = this.levelOrderIterator();
+
+        while (iter.hasNext()) {
+            TreeNode<K, V> node = iter.next();
+            if (node.left != null && node.left == child) {
+                return node;
+            }
+            else if (node.right != null && node.right == child) {
+                return node;
+            }
+        }
+
         return null;
     }
 
-    /*
-     * TODO:
-     */
     public V get(K key)
         throws BinaryTreeException
     {
-        return null;
+        Iterator<TreeNode<K, V>> iter = this.levelOrderIterator();
+
+        while (iter.hasNext()) {
+            TreeNode<K, V> node = iter.next();
+            if (node.key.equals(key)) {
+                return node.value;
+            }
+        }
+
+        throw new BinaryTreeException("Get error: key not found");
     }
 
     /*
      * **DFS** traversal: visit current, then left, then right nodes
      */
-    public Iterator<Node> preOrderIterator()
+    public Iterator<TreeNode<K, V>> preOrderIterator()
         throws BinaryTreeException
     {
         return new PreOrderIterator();
@@ -123,7 +181,7 @@ public class LinkedBinaryTree<K, V>
     /*
      * **DFS** traversal: visit left, then current, then right nodes
      */
-    public Iterator<Node> inOrderIterator()
+    public Iterator<TreeNode<K, V>> inOrderIterator()
         throws BinaryTreeException
     {
         return new InOrderIterator();
@@ -132,7 +190,7 @@ public class LinkedBinaryTree<K, V>
     /*
      * **DFS** traversal: visit left, then right, then current nodes
      */
-    public Iterator<Node> postOrderIterator()
+    public Iterator<TreeNode<K, V>> postOrderIterator()
         throws BinaryTreeException
     {
         return new PostOrderIterator();
@@ -141,23 +199,23 @@ public class LinkedBinaryTree<K, V>
     /*
      * **BFS** traversal
      */
-    public Iterator<Node> levelOrderIterator()
+    public Iterator<TreeNode<K, V>> levelOrderIterator()
         throws BinaryTreeException
     {
         return new LevelOrderIterator();
     }
 
     /*
-     * Nodes concatenated in level order
+     * TreeNodes concatenated in level order
      */
     public String toString()
     {
         StringBuffer sb = new StringBuffer();
 
         try {
-            Iterator<Node> iter = this.levelOrderIterator();
+            Iterator<TreeNode<K, V>> iter = this.levelOrderIterator();
             while (iter.hasNext()) {
-                Node node = iter.next();
+                TreeNode<K, V> node = iter.next();
                 sb.append(node.toString());
             }
         }
@@ -172,14 +230,14 @@ public class LinkedBinaryTree<K, V>
      * **DFS** traversal: visit current, then left, then right nodes
      */
     private class PreOrderIterator
-        implements Iterator<Node>
+        implements Iterator<TreeNode<K, V>>
     {
-        private Stack<Node> stack;
+        private Stack<TreeNode<K, V>> stack;
 
         public PreOrderIterator()
             throws BinaryTreeException
         {
-            stack = new LinkedStack<Node>();
+            stack = new LinkedStack<TreeNode<K, V>>();
             try {
                 stack.push(root);
             }
@@ -193,10 +251,10 @@ public class LinkedBinaryTree<K, V>
             return !stack.isEmpty();
         }
 
-        public Node next()
+        public TreeNode<K, V> next()
         {
             try {
-                Node node = stack.pop();
+                TreeNode<K, V> node = stack.pop();
                 if (node.right != null) {
                     stack.push(node.right);
                 }
@@ -210,24 +268,24 @@ public class LinkedBinaryTree<K, V>
             }
         }
 
-        /*
-         * Not implemented
-         */
-        public void remove() {}
+        public void remove()
+        {
+            throw new RuntimeException("Not implemented");
+        }
     }
 
     /*
      * **DFS** traversal: visit left, then current, then right nodes
      */
     private class InOrderIterator
-        implements Iterator<Node>
+        implements Iterator<TreeNode<K, V>>
     {
-        private Stack<Node> stack;
+        private Stack<TreeNode<K, V>> stack;
 
         public InOrderIterator()
             throws BinaryTreeException
         {
-            stack = new LinkedStack<Node>();
+            stack = new LinkedStack<TreeNode<K, V>>();
             try {
                 if (root != null) {
                     stack.push(root);
@@ -243,10 +301,10 @@ public class LinkedBinaryTree<K, V>
             return !stack.isEmpty();
         }
 
-        public Node next()
+        public TreeNode<K, V> next()
         {
             try {
-                Node node = stack.pop();
+                TreeNode<K, V> node = stack.pop();
 
                 while (node != null && !node.visited) {
                     stack.push(node);
@@ -267,24 +325,24 @@ public class LinkedBinaryTree<K, V>
             }
         }
 
-        /*
-         * Not implemented
-         */
-        public void remove() {}
+        public void remove()
+        {
+            throw new RuntimeException("Not implemented");
+        }
     }
 
     /*
      * **DFS** traversal: visit left, then current, then right nodes
      */
     private class PostOrderIterator
-        implements Iterator<Node>
+        implements Iterator<TreeNode<K, V>>
     {
-        private Stack<Node> stack;
+        private Stack<TreeNode<K, V>> stack;
 
         public PostOrderIterator()
             throws BinaryTreeException
         {
-            stack = new LinkedStack<Node>();
+            stack = new LinkedStack<TreeNode<K, V>>();
             try {
                 if (root != null) {
                     stack.push(root);
@@ -296,7 +354,7 @@ public class LinkedBinaryTree<K, V>
             }
         }
 
-        private void P(Node node)
+        private void P(TreeNode<K, V> node)
             throws StackException
         {
             if (node == null) {
@@ -319,7 +377,7 @@ public class LinkedBinaryTree<K, V>
             return !stack.isEmpty();
         }
 
-        public Node next()
+        public TreeNode<K, V> next()
         {
             try {
                 return stack.pop();
@@ -329,25 +387,25 @@ public class LinkedBinaryTree<K, V>
             }
         }
 
-        /*
-         * Not implemented
-         */
-        public void remove() {}
+        public void remove()
+        {
+            throw new RuntimeException("Not implemented");
+        }
     }
 
     private class LevelOrderIterator
-        implements Iterator<Node>
+        implements Iterator<TreeNode<K, V>>
     {
-        private Queue<Node> queue;
+        private Queue<TreeNode<K, V>> queue;
 
         public LevelOrderIterator()
             throws BinaryTreeException
         {
-            queue = new LinkedQueue<Node>();
+            queue = new LinkedQueue<TreeNode<K, V>>();
             Q(root);
         }
 
-        private void Q(Node node)
+        private void Q(TreeNode<K, V> node)
             throws BinaryTreeException
         {
             if (node == null) {
@@ -366,10 +424,10 @@ public class LinkedBinaryTree<K, V>
             return !queue.isEmpty();
         }
 
-        public Node next()
+        public TreeNode<K, V> next()
         {
             try {
-                Node node = queue.dequeue();
+                TreeNode<K, V> node = queue.dequeue();
                 if (node.left != null) {
                     Q(node.left);
                 }
@@ -383,9 +441,9 @@ public class LinkedBinaryTree<K, V>
             }
         }
 
-        /*
-         * Not implemented
-         */
-        public void remove() {}
+        public void remove()
+        {
+            throw new RuntimeException("Not implemented");
+        }
     }
 }
