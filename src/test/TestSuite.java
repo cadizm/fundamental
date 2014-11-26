@@ -20,6 +20,7 @@ import org.junit.runners.Suite;
     BinarySearchTest.class,
     SortTest.class,
     ArrayListTest.class,
+    BinaryHeapTest.class,
 })
 public class TestSuite
 {
