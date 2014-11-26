@@ -12,7 +12,7 @@ import exception.ListException;
 public class DoublyLinkedListTest
 {
     @Test
-    public void testCreate()
+    public void testConstruct()
     {
         DoublyLinkedList<String> list = new DoublyLinkedList<String>();
         assertEquals("", list.toString());

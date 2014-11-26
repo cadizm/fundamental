@@ -19,7 +19,6 @@ public class BinarySearch<T extends Comparable<? super T>>
 
     private T binarySearchRecursive(T[] array, T key, int low, int high)
     {
-        // note low < high
         if (high < low) {
             return null;
         }
@@ -46,7 +45,6 @@ public class BinarySearch<T extends Comparable<? super T>>
 
     private T binarySearchIterative(T[] array, T key, int low, int high)
     {
-        // note high >= low
         while (high >= low) {
             int mid = low + ((high - low) / 2);  // avoid overflow
 

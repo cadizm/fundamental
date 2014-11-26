@@ -12,7 +12,7 @@ import exception.StackException;
 public class LinkedStackTest
 {
     @Test
-    public void testCreate()
+    public void testConstruct()
     {
         LinkedStack<String> stack = new LinkedStack<String>();
         assertEquals("", stack.toString());

@@ -41,6 +41,7 @@ public class BinaryHeapTest
         assertEquals("(1)(2)(3)(5)", heap.toString());
     }
 
+    // TODO:
     @Test
     public void testDeleteMin()
         throws PriorityQueueException

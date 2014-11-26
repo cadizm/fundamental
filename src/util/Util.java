@@ -1,8 +1,10 @@
 
 package util;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 
 
 public class Util
@@ -67,5 +69,27 @@ public class Util
     public static String[] combinations(String s)
     {
         return null;
+    }
+
+    private static Map<Integer, Integer> factorialMap = new Hashtable<Integer, Integer>();
+
+    public static int factorial(int n)
+    {
+        if (n < 0) {
+            throw new RuntimeException("Factorial error: n < 0");
+        }
+
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+
+        if (factorialMap.containsKey(n)) {
+            return factorialMap.get(n);
+        }
+
+        int f = n * factorial(n - 1);
+        factorialMap.put(n, f);
+
+        return f;
     }
 }

@@ -12,7 +12,7 @@ import exception.ListException;
 public class LinkedListTest
 {
     @Test
-    public void testCreate()
+    public void testConstruct()
     {
         LinkedList<Object, String> list = new LinkedList<Object, String>();
         assertEquals("", list.toString());

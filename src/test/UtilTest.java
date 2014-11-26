@@ -1,11 +1,18 @@
 
 package test;
 
+import java.util.Map;
+import java.util.Hashtable;
+
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import util.Util;
+import static util.Util.combinations;
+import static util.Util.factorial;
+import static util.Util.hex2dec;
+import static util.Util.permutations;
 
 
 public class UtilTest
@@ -21,14 +28,13 @@ public class UtilTest
         };
 
         for (int i = 0; i < c.length; ++i) {
-            assertEquals(i, Util.hex2dec(c[i]));
+            assertEquals(i, hex2dec(c[i]));
         }
 
-        assertEquals(-1, Util.hex2dec(' '));
-        assertEquals(-1, Util.hex2dec('/'));
-        assertEquals(-1, Util.hex2dec('g'));
-        assertEquals(-1, Util.hex2dec('G'));
-
+        assertEquals(-1, hex2dec(' '));
+        assertEquals(-1, hex2dec('/'));
+        assertEquals(-1, hex2dec('g'));
+        assertEquals(-1, hex2dec('G'));
     }
 
     @Test
@@ -41,12 +47,12 @@ public class UtilTest
             "ABCD",
         };
         for (String s : S) {
-            String[] P = Util.permutations(s);
-            System.out.print(s + " => ");
+            Map<String, Integer> map = new Hashtable<String, Integer>();
+            String[] P = permutations(s);
             for (String p : P) {
-                System.out.print(p + " ");
+                map.put(p, 1);
             }
-            System.out.println();
+            assertEquals(map.size(), factorial(s.length()));
         }
     }
 }

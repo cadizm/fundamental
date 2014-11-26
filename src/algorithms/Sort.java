@@ -52,7 +52,7 @@ public class Sort<T extends Comparable<? super T>>
             merge(array, low, mid, high);
         }
 
-        /**
+        /*
          * In-place merge of array[low...mid] with array[mid+1...high]
          * into array[low...high] (low/high inclusive)
          *
@@ -87,5 +87,4 @@ public class Sort<T extends Comparable<? super T>>
             }
         }
     }
-
 }

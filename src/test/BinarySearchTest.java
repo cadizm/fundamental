@@ -11,7 +11,7 @@ import algorithms.BinarySearch;
 public class BinarySearchTest
 {
     @Test
-    public void testConstruct()
+    public void testBinarySearch()
     {
         Integer[] array = {
             0, 22, 11, 3, 100, 101, -16, 77

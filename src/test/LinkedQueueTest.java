@@ -12,7 +12,7 @@ import exception.QueueException;
 public class LinkedQueueTest
 {
     @Test
-    public void testCreate()
+    public void testConstruct()
     {
         LinkedQueue<String> queue = new LinkedQueue<String>();
         assertEquals("", queue.toString());
