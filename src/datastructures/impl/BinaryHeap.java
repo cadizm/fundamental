@@ -37,7 +37,8 @@ public class BinaryHeap<T>
 
         this.comparator = comparator;
 
-        // index 0 is unused in order to simplify indexing; given index i:
+        // Our array represents a complete binary tree
+        // index 0 unused to simplify indexing; given index i:
         //   left child at position: 2i
         //   right child at position: 2i + 1
         //   parent at position: floor(i / 2)
@@ -125,12 +126,22 @@ public class BinaryHeap<T>
     {
         int i = 1;
         int j = 2 * i;
+        int k = j + 1;
+
+        // if we have a smaller right child
+        if (k <= size && comparator.compare(buf[k], buf[j]) < 0) {
+            j = k;
+        }
 
         // parent.compareTo(child)
         while (j <= size && comparator.compare(buf[i], buf[j]) > 0) {
             swap(i, j);
             i = j;
             j *= 2;
+            k = j + 1;
+            if (k <= size && comparator.compare(buf[k], buf[j]) < 0) {
+                j = k;
+            }
         }
     }
 
