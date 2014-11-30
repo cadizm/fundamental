@@ -17,7 +17,7 @@ public class LinkedBinaryTree<K, V>
     implements BinaryTree<K, V>
 {
     public TreeNode<K, V> root;
-    private int size;
+    protected int size;
 
     public LinkedBinaryTree()
     {
