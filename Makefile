@@ -1,8 +1,9 @@
 
 CC = gcc
+CFLAGS = -g -Wall
 JAVA = java
 JAVAC = javac
-CLASSPATH = src:classes:lib/junit-4.11.jar
+CLASSPATH = classes:lib/junit-4.11.jar
 
 all: prep bits java
 
@@ -13,16 +14,16 @@ java: prep
 	find src -type f -iname '*.java' | xargs $(JAVAC) -cp $(CLASSPATH) -d classes -Xlint:unchecked
 
 test: java
-	java -cp classes:lib/junit-4.11.jar test.TestSuite
+	java -cp $(CLASSPATH) test.TestSuite
 
-obj/bits.o: src/bits/bits.c src/bits/bits.h obj
-	$(CC) -c $< -o obj/bits.o
+obj/bits.o: src/bits/bits.c src/bits/bits.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-obj/bittest.o: src/bits/bittest.c obj
-	$(CC) -c $< -o obj/bittest.o
+obj/bittest.o: src/bits/bittest.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 bin/bittest: obj/bits.o obj/bittest.o
-	$(CC) obj/bits.o obj/bittest.o -o bin/bittest
+	$(CC) $(CFLAGS) $? -o $@
 
 bits: prep bin/bittest
 
