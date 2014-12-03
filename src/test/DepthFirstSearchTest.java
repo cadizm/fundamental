@@ -1,11 +1,15 @@
 
 package test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.Ignore;
 
 import algorithms.DepthFirstSearch;
+import callbacks.DepthFirstSearchCallback;
 import datastructures.adt.Graph;
 import datastructures.impl.AdjacencyListGraph;
 import exception.GraphException;
@@ -15,6 +19,13 @@ public class DepthFirstSearchTest
 {
     @Test
     public void testConstruct()
+        throws GraphException
+    {
+        Graph<Integer> graph = new AdjacencyListGraph<Integer>();
+    }
+
+    @Test
+    public void testDfs()
         throws GraphException
     {
         Graph<Integer> graph = new AdjacencyListGraph<Integer>();
@@ -34,11 +45,26 @@ public class DepthFirstSearchTest
         graph.addEdge(5, 3);
 
         DepthFirstSearch<Integer> dfs = new DepthFirstSearch<Integer>(graph);
-System.out.println("TODO: add test case");
-        dfs.dfs(0);
-System.out.println("============");
-        dfs.dfs(7);
-System.out.println("============");
-        dfs.dfs(9);
+
+        dfs.dfs(0, new DepthFirstSearchCallback<Integer>() {
+            List<Integer> connected = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
+            public void call(Graph<Integer> graph, Integer vertex) {
+                assertEquals(true, connected.contains(vertex));
+            }
+        });
+
+        dfs.dfs(7, new DepthFirstSearchCallback<Integer>() {
+            List<Integer> connected = Arrays.asList(7, 8);
+            public void call(Graph<Integer> graph, Integer vertex) {
+                assertEquals(true, connected.contains(vertex));
+            }
+        });
+
+        dfs.dfs(9, new DepthFirstSearchCallback<Integer>() {
+            List<Integer> connected = Arrays.asList(9, 10, 11, 12);
+            public void call(Graph<Integer> graph, Integer vertex) {
+                assertEquals(true, connected.contains(vertex));
+            }
+        });
     }
 }

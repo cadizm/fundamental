@@ -4,6 +4,7 @@ package algorithms;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+import callbacks.DepthFirstSearchCallback;
 import datastructures.adt.Graph;
 
 
@@ -17,13 +18,13 @@ public class DepthFirstSearch<T>
         this.graph = graph;
     }
 
-    public void dfs(T source)
+    public void dfs(T source, DepthFirstSearchCallback<T> callback)
     {
         visited = new Hashtable<T, Boolean>();
-        _dfs(source);
+        _dfs(source, callback);
     }
 
-    private void _dfs(T source)
+    private void _dfs(T source, DepthFirstSearchCallback<T> callback)
     {
         Iterator<T> adjacent = graph.neighbors(source).iterator();
 
@@ -31,10 +32,9 @@ public class DepthFirstSearch<T>
             T v = adjacent.next();
             Boolean visited = this.visited.get(v);
             if (visited == null || !visited.booleanValue()) {
+                callback.call(graph, v);
                 this.visited.put(v, true);
-System.out.println("Visited: " + v.toString());
-System.out.println("TODO: add action");
-                _dfs(v);
+                _dfs(v, callback);
             }
         }
     }
