@@ -1,6 +1,6 @@
 
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -g -Wall -std=c99
 JAVA = java
 JAVAC = javac
 CLASSPATH = classes:lib/junit-4.11.jar
