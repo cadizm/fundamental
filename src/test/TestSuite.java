@@ -22,6 +22,9 @@ import org.junit.runners.Suite;
     ArrayListTest.class,
     BinaryHeapTest.class,
     BinarySearchTreeTest.class,
+    AdjacencyListGraphTest.class,
+    DepthFirstSearchTest.class,
+    DepthFirstPathTest.class,
 })
 public class TestSuite
 {

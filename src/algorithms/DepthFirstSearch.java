@@ -10,8 +10,8 @@ import datastructures.adt.Graph;
 
 public class DepthFirstSearch<T>
 {
-    private Graph<T> graph;
-    private Hashtable<T, Boolean> visited;
+    protected Graph<T> graph;
+    protected Hashtable<T, Boolean> visited;
 
     public DepthFirstSearch(Graph<T> graph)
     {
@@ -24,7 +24,7 @@ public class DepthFirstSearch<T>
         _dfs(source, callback);
     }
 
-    private void _dfs(T source, DepthFirstSearchCallback<T> callback)
+    protected void _dfs(T source, DepthFirstSearchCallback<T> callback)
     {
         Iterator<T> adjacent = graph.neighbors(source).iterator();
 

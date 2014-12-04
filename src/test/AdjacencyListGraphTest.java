@@ -1,6 +1,9 @@
 
 package test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -14,6 +17,13 @@ public class AdjacencyListGraphTest
 {
     @Test
     public void testConstruct()
+        throws GraphException
+    {
+        Graph<Integer> graph = new AdjacencyListGraph<Integer>();
+    }
+
+    @Test
+    public void testNeighbors()
         throws GraphException
     {
         Graph<Integer> graph = new AdjacencyListGraph<Integer>();
@@ -32,7 +42,60 @@ public class AdjacencyListGraphTest
         graph.addEdge(9, 11);
         graph.addEdge(5, 3);
 
-System.out.println("TODO: add test case");
-System.out.println(graph.toString());
+        List<Integer> connected = Arrays.asList(5, 1, 2, 6);
+        int size = 0;
+        for (Integer v : graph.neighbors(0)) {
+            assertEquals(true, connected.contains(v));
+            size += 1;
+        }
+        assertEquals(size, connected.size());
+
+        connected = Arrays.asList(0);
+        size = 0;
+        for (Integer v : graph.neighbors(1)) {
+            assertEquals(true, connected.contains(v));
+            size += 1;
+        }
+        assertEquals(size, connected.size());
+
+        connected = Arrays.asList(0);
+        size = 0;
+        for (Integer v : graph.neighbors(2)) {
+            assertEquals(true, connected.contains(v));
+            size += 1;
+        }
+        assertEquals(size, connected.size());
+
+        connected = Arrays.asList(0, 4);
+        size = 0;
+        for (Integer v : graph.neighbors(6)) {
+            assertEquals(true, connected.contains(v));
+            size += 1;
+        }
+        assertEquals(size, connected.size());
+
+        connected = Arrays.asList(4, 5);
+        size = 0;
+        for (Integer v : graph.neighbors(3)) {
+            assertEquals(true, connected.contains(v));
+            size += 1;
+        }
+        assertEquals(size, connected.size());
+
+        connected = Arrays.asList(3, 6, 5);
+        size = 0;
+        for (Integer v : graph.neighbors(4)) {
+            assertEquals(true, connected.contains(v));
+            size += 1;
+        }
+        assertEquals(size, connected.size());
+
+        connected = Arrays.asList(0, 3, 4);
+        size = 0;
+        for (Integer v : graph.neighbors(5)) {
+            assertEquals(true, connected.contains(v));
+            size += 1;
+        }
+        assertEquals(size, connected.size());
     }
 }
