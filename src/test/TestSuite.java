@@ -25,6 +25,7 @@ import org.junit.runners.Suite;
     AdjacencyListGraphTest.class,
     DepthFirstSearchTest.class,
     DepthFirstPathTest.class,
+    BreadthFirstSearchTest.class,
 })
 public class TestSuite
 {
