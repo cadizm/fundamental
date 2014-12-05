@@ -8,10 +8,10 @@ import org.junit.Ignore;
 
 import java.util.Arrays;
 
-import algorithms.Sort;
+import algorithms.Mergesort;
 
 
-public class SortTest
+public class MergesortTest
 {
     @Test
     public void testMerge()
@@ -24,8 +24,8 @@ public class SortTest
             "A", "C", "E", "E", "E", "G", "M", "R", "R", "T",
         };
 
-        Sort<String> sort = new Sort<String>();
-        sort.merge(s, 0, 4, s.length - 1);
+        Mergesort<String> mergesort = new Mergesort<String>();
+        mergesort.merge(s, 0, 4, s.length - 1);
 
         assertArrayEquals(t, s);
     }
@@ -41,10 +41,10 @@ public class SortTest
             0, 22, 17, 44, -3
         };
 
-        Sort<Integer> sort = new Sort<Integer>();
+        Mergesort<Integer> mergesort = new Mergesort<Integer>();
 
         Arrays.sort(a);  // in-place sort
-        sort.mergesort(b);  // in-place sort
+        mergesort.sort(b);  // in-place sort
 
         assertArrayEquals(a, b);
     }
@@ -63,8 +63,8 @@ public class SortTest
             "M", "O", "P", "R", "R", "S", "T", "X",
         };
 
-        Sort<String> sort = new Sort<String>();
-        sort.mergesort(s);
+        Mergesort<String> mergesort = new Mergesort<String>();
+        mergesort.sort(s);
 
         assertArrayEquals(t, s);
     }

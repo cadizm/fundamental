@@ -18,7 +18,7 @@ import org.junit.runners.Suite;
     LinkedBinaryTreeTest.class,
     UtilTest.class,
     BinarySearchTest.class,
-    SortTest.class,
+    MergesortTest.class,
     ArrayListTest.class,
     BinaryHeapTest.class,
     BinarySearchTreeTest.class,
