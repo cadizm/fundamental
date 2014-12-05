@@ -2,7 +2,6 @@
 package algorithms;
 
 import java.util.Hashtable;
-import java.util.Iterator;
 
 import callbacks.DepthFirstSearchCallback;
 import datastructures.adt.Graph;
@@ -26,10 +25,7 @@ public class DepthFirstSearch<T>
 
     protected void _dfs(T source, DepthFirstSearchCallback<T> callback)
     {
-        Iterator<T> adjacent = graph.neighbors(source).iterator();
-
-        while (adjacent.hasNext()) {
-            T v = adjacent.next();
+        for (T v : graph.adjacent(source)) {
             Boolean visited = this.visited.get(v);
             if (visited == null || !visited.booleanValue()) {
                 callback.call(graph, v);

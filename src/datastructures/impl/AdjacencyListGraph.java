@@ -3,7 +3,6 @@ package datastructures.impl;
 
 import java.util.Collections;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
@@ -35,7 +34,7 @@ public class AdjacencyListGraph<T extends Comparable<? super T>>
         return false;
     }
 
-    public Iterable<T> neighbors(T u)
+    public Iterable<T> adjacent(T u)
     {
         return adj.get(u);
     }
@@ -84,20 +83,14 @@ public class AdjacencyListGraph<T extends Comparable<? super T>>
     {
         StringBuilder sb = new StringBuilder();
 
-        Iterator<T> keys = new TreeSet<T>(adj.keySet()).iterator();
-
-        while (keys.hasNext()) {
-            T u = keys.next();
+        for (T u : new TreeSet<T>(adj.keySet())) {
             sb.append(u);
             sb.append(": ");
 
             LinkedList<T> list = adj.get(u);
-            Collections.sort(list);
+            Collections.sort(list);  // in-place
 
-            Iterator<T> values = list.iterator();
-
-            while (values.hasNext()) {
-                T v = values.next();
+            for (T v : list) {
                 sb.append(v);
                 sb.append(" ");
             }

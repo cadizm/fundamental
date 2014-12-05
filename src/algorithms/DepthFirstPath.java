@@ -2,7 +2,6 @@
 package algorithms;
 
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import algorithms.DepthFirstSearch;
@@ -66,10 +65,7 @@ public class DepthFirstPath<T>
 
     protected void _dfs(T source, DepthFirstSearchCallback<T> callback)
     {
-        Iterator<T> iter = graph.neighbors(source).iterator();
-
-        while (iter.hasNext()) {
-            T v = iter.next();
+        for (T v : graph.adjacent(source)) {
             // so we don't visit source vertex
             if (v.equals(this.source)) {
                 continue;

@@ -2,7 +2,6 @@
 package test;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -55,11 +54,9 @@ public class DepthFirstPathTest
         assertEquals(null, dfs.pathTo(11));
         assertEquals(null, dfs.pathTo(12));
 
-        Iterator<Integer> iter = dfs.pathTo(6).iterator();
         StringBuffer sb = new StringBuffer();
 
-        while (iter.hasNext()) {
-            Integer v = iter.next();
+        for (Integer v : dfs.pathTo(6)) {
             sb.append(v);
         }
 

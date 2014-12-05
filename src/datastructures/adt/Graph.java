@@ -15,7 +15,7 @@ public interface Graph<T>
      * Return all vertices v such that there is an edge from u to v
      * (i.e., u's adjacent vertices)
      */
-    public Iterable<T> neighbors(T u);
+    public Iterable<T> adjacent(T u);
 
     /*
      * Add edge from Vertex u to Vertex v

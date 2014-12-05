@@ -23,7 +23,7 @@ public class AdjacencyListGraphTest
     }
 
     @Test
-    public void testNeighbors()
+    public void testAdjacent()
         throws GraphException
     {
         Graph<Integer> graph = new AdjacencyListGraph<Integer>();
@@ -44,7 +44,7 @@ public class AdjacencyListGraphTest
 
         List<Integer> connected = Arrays.asList(5, 1, 2, 6);
         int size = 0;
-        for (Integer v : graph.neighbors(0)) {
+        for (Integer v : graph.adjacent(0)) {
             assertEquals(true, connected.contains(v));
             size += 1;
         }
@@ -52,7 +52,7 @@ public class AdjacencyListGraphTest
 
         connected = Arrays.asList(0);
         size = 0;
-        for (Integer v : graph.neighbors(1)) {
+        for (Integer v : graph.adjacent(1)) {
             assertEquals(true, connected.contains(v));
             size += 1;
         }
@@ -60,7 +60,7 @@ public class AdjacencyListGraphTest
 
         connected = Arrays.asList(0);
         size = 0;
-        for (Integer v : graph.neighbors(2)) {
+        for (Integer v : graph.adjacent(2)) {
             assertEquals(true, connected.contains(v));
             size += 1;
         }
@@ -68,7 +68,7 @@ public class AdjacencyListGraphTest
 
         connected = Arrays.asList(0, 4);
         size = 0;
-        for (Integer v : graph.neighbors(6)) {
+        for (Integer v : graph.adjacent(6)) {
             assertEquals(true, connected.contains(v));
             size += 1;
         }
@@ -76,7 +76,7 @@ public class AdjacencyListGraphTest
 
         connected = Arrays.asList(4, 5);
         size = 0;
-        for (Integer v : graph.neighbors(3)) {
+        for (Integer v : graph.adjacent(3)) {
             assertEquals(true, connected.contains(v));
             size += 1;
         }
@@ -84,7 +84,7 @@ public class AdjacencyListGraphTest
 
         connected = Arrays.asList(3, 6, 5);
         size = 0;
-        for (Integer v : graph.neighbors(4)) {
+        for (Integer v : graph.adjacent(4)) {
             assertEquals(true, connected.contains(v));
             size += 1;
         }
@@ -92,7 +92,7 @@ public class AdjacencyListGraphTest
 
         connected = Arrays.asList(0, 3, 4);
         size = 0;
-        for (Integer v : graph.neighbors(5)) {
+        for (Integer v : graph.adjacent(5)) {
             assertEquals(true, connected.contains(v));
             size += 1;
         }
