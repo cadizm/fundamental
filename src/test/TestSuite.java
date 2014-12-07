@@ -26,6 +26,7 @@ import org.junit.runners.Suite;
     DepthFirstSearchTest.class,
     DepthFirstPathTest.class,
     BreadthFirstSearchTest.class,
+    QuicksortTest.class,
 })
 public class TestSuite
 {
