@@ -1,6 +1,6 @@
 
-CC = gcc
-CFLAGS = -g -Wall -std=c99
+CC = g++
+CFLAGS = -g -Wall -std=c++11
 JAVA = java
 JAVAC = javac
 CLASSPATH = classes:lib/junit-4.11.jar
@@ -16,10 +16,10 @@ java: prep
 test: java
 	java -cp $(CLASSPATH) test.TestSuite
 
-obj/bits.o: src/bits/bits.c src/bits/bits.h
+obj/bits.o: src/bits/bits.cc src/bits/bits.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-obj/bittest.o: src/bits/bittest.c
+obj/bittest.o: src/bits/bittest.cc
 	$(CC) $(CFLAGS) -c $< -o $@
 
 bin/bittest: obj/bits.o obj/bittest.o
