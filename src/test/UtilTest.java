@@ -55,4 +55,23 @@ public class UtilTest
             assertEquals(map.size(), factorial(s.length()));
         }
     }
+
+    @Test
+    public void testCombinations()
+    {
+        String[] S = {
+            "A",
+            "AB",
+            "ABC",
+            "ABCD",
+        };
+        for (String s : S) {
+            Map<String, Integer> map = new Hashtable<String, Integer>();
+            String[] C = combinations(s);
+            for (String c : C) {
+                map.put(c, 1);
+            }
+            assertEquals(map.size(), (int)Math.pow(2, s.length()));
+        }
+    }
 }

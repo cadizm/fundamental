@@ -1,4 +1,7 @@
 
+#ifndef BITS_H_
+#define BITS_H_
+
 #include <stdint.h>
 
 /*
@@ -61,3 +64,6 @@ uint64_t togglebit(uint64_t v, int n);
  * Swap bits in v at `indices' i, j (0-based indexing)
  */
 uint64_t swap64(uint64_t v, int i, int j);
+
+
+#endif  /* #define BITS_H_ */

@@ -63,12 +63,26 @@ public class Util
     }
 
     /*
-     * Use a "bit-mask" for the 2^n k-ary combinations of n choose k of s,
-     * where n = s.length()
+     * Use a "bit-mask" for the 2^n combinations of s, where n = s.length()
      */
     public static String[] combinations(String s)
     {
-        return null;
+        int n = s.length();
+        int N = (int)Math.pow(2, n);
+
+        List<String> res = new ArrayList<String>();
+
+        for (int i = 0; i < N; ++i) {
+            StringBuffer sb = new StringBuffer();
+            for (int j = 0; j < n; ++j) {
+                if ((i & (1 << j)) != 0) {
+                    sb.append(s.charAt(j));
+                }
+            }
+            res.add(sb.toString());
+        }
+
+        return res.toArray(new String[0]);
     }
 
     private static Map<Integer, Integer> factorialMap = new Hashtable<Integer, Integer>();
