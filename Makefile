@@ -3,7 +3,7 @@ CC = g++
 CFLAGS = -g -Wall -std=c++11
 JAVA = java
 JAVAC = javac
-CLASSPATH = classes:lib/junit-4.11.jar
+CLASSPATH = classes:lib/junit-4.11.jar:lib/hamcrest-all-1.3.jar
 
 all: prep bits java
 

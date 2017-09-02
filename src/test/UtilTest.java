@@ -64,6 +64,7 @@ public class UtilTest
             "AB",
             "ABC",
             "ABCD",
+            "ABCDE",
         };
         for (String s : S) {
             Map<String, Integer> map = new Hashtable<String, Integer>();
